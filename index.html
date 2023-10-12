@@ -13,13 +13,11 @@
 
     <!-- JavaScript code to run the Python script -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const runScriptButton = document.getElementById("run-script-button");
-            const outputDiv = document.getElementById("output-div");
+const serverURL = 'https://your-server-domain.com/api'; // Replace with your server's URL
 
-        runScriptButton.addEventListener("click", async function () {
+runScriptButton.addEventListener("click", async function () {
     try {
-        const response = await fetch("/clans.py");
+        const response = await fetch(`${serverURL}/run-script`);
         if (response.ok) {
             const result = await response.text();
             outputDiv.textContent = result;
@@ -30,7 +28,6 @@
         outputDiv.textContent = `Error: ${error.message}`;
     }
 });
-
     </script>
 </body>
 </html>
