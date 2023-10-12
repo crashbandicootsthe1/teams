@@ -17,20 +17,20 @@
             const runScriptButton = document.getElementById("run-script-button");
             const outputDiv = document.getElementById("output-div");
 
-            runScriptButton.addEventListener("click", async function () {
-                try {
-                    const response = await fetch("/clans.py");
-                    if (response.ok) {
-                        const result = await response.text();
-                        outputDiv.textContent = result;
-                    } else {
-                        outputDiv.textContent = "Error: Failed to run the script.";
-                    }
-                } catch (error) {
-                    outputDiv.textContent = "Error: " + error.message;
-                }
-            });
-        });
+        runScriptButton.addEventListener("click", async function () {
+    try {
+        const response = await fetch("/clans.py");
+        if (response.ok) {
+            const result = await response.text();
+            outputDiv.textContent = result;
+        } else {
+            outputDiv.textContent = `Error: Failed to run the script. Status: ${response.status} ${response.statusText}`;
+        }
+    } catch (error) {
+        outputDiv.textContent = `Error: ${error.message}`;
+    }
+});
+
     </script>
 </body>
 </html>
