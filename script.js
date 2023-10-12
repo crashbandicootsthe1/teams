@@ -1,26 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("script-form");
-    const outputText = document.getElementById("output-text");
+    const runScriptButton = document.getElementById("run-script-button");
+    const outputDiv = document.getElementById("output-div");
 
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        const inputData = document.getElementById("input-data").value;
-
-        // Make an HTTP request to your serverless function
-        const response = await fetch('/your-serverless-function-endpoint', {
-            method: 'POST',
-            body: JSON.stringify({ data: inputData }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+    runScriptButton.addEventListener("click", async function () {
+        // Make an HTTP request to the API endpoint that triggers the script execution
+        const response = await fetch("/api/execute-script");
 
         if (response.ok) {
             const result = await response.json();
-            outputText.textContent = JSON.stringify(result, null, 2);
+            outputDiv.textContent = JSON.stringify(result, null, 2);
         } else {
-            outputText.textContent = 'Error: Failed to run the script.';
+            outputDiv.textContent = "Error: Failed to run the script.";
         }
     });
 });
