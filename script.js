@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const outputDiv = document.getElementById("output-div");
 
     runScriptButton.addEventListener("click", async function () {
-        // Make an HTTP request to a server to run the Python script
         try {
             const response = await fetch("/run-python-script", {
                 method: "POST"
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 const result = await response.json();
-                outputDiv.textContent = JSON.stringify(result, null, 2);
+                outputDiv.textContent = result.output;
             } else {
                 outputDiv.textContent = "Error: Failed to run the script.";
             }
@@ -20,3 +19,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
