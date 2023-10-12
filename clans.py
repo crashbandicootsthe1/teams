@@ -2,9 +2,11 @@ import json
 import os
 import time
 from datetime import datetime, timedelta
-
+from decouple import contents
 import scratchattach as scratch3
 from fuzzywuzzy import fuzz
+
+os.environ["SESSION_ID"] = contents.SESSION_ID
 
 # Your username and session setup
 session = scratch3.Session(os.environ["SESSION_ID"], username="crashbandicootsthe1")
