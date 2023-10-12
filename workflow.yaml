@@ -1,0 +1,37 @@
+name: Generate HTML
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies (if needed)
+      run: pip install -r requirements.txt
+
+    - name: Run Python Script
+      run: python clans.py
+
+    - name: Generate HTML
+      run: python generate_html.py  # Replace with the actual script that generates HTML
+
+    - name: Commit HTML to repository
+      run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git add generated.html
+        git commit -m "Update HTML"
+        git push
+
